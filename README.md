@@ -1,96 +1,99 @@
-#📩 AutoML for Spam Detection
-#🎯 Objective
+# 📩 AutoML for Spam Detection  
 
-Use AutoML and Hyperparameter Tuning tools to automate the model selection and optimization process for spam detection.
+## 🎯 Objective  
+Use **AutoML** and **Hyperparameter Tuning** tools to automate the model selection and optimization process for **spam detection**.  
 
-#📖 Theory
+---
 
-AutoML automates key parts of the machine learning pipeline, including:
+## 📖 Theory  
+**AutoML** automates key parts of the machine learning pipeline, including:  
 
-🔹 Feature extraction
+- 🔹 Feature extraction  
+- 🔹 Model selection  
+- 🔹 Model evaluation  
 
-🔹 Model selection
+In this project:  
 
-🔹 Model evaluation
+### 🔍 Models Compared  
+- ⚡ Logistic Regression  
+- ⚡ Multinomial Naive Bayes  
+- ⚡ Linear Support Vector Classifier (SVC)  
+- ⚡ Random Forest  
 
-In this project:
+### 🧹 Preprocessing  
+- **TF-IDF Vectorizer** was used to convert SMS messages into numerical features while:  
+  - Removing stopwords  
+  - Considering unigrams and bigrams  
 
-Multiple classification algorithms were systematically compared using cross-validation:
+➡️ Text-based data requires effective representation for ML models to perform well.  
 
-⚡ Logistic Regression
+---
 
-⚡ Multinomial Naive Bayes
+## ⚙️ Methodology  
 
-⚡ Linear Support Vector Classifier (SVC)
+### 1️⃣ Model Evaluation  
+- Metric: **F1-score** (balances precision & recall)  
+- Reason: Best for **imbalanced datasets** like spam detection  
+- ✅ **Result**: **Linear SVC** emerged as the strongest baseline  
 
-⚡ Random Forest
+### 2️⃣ Hyperparameter Tuning  
+- Framework: **Optuna** (state-of-the-art optimization tool)  
+- Parameters tuned:  
+  - 📌 N-gram range  
+  - 📌 Minimum document frequency (`min_df`)  
+  - 📌 Regularization parameter (`C`) for SVC  
 
-A TF-IDF Vectorizer was applied to convert SMS messages into numerical features while:
+### 3️⃣ Final Model Training  
+- Trained the **optimized SVC model** on the training set  
+- Evaluated performance on the **test set**  
 
-🧹 Removing stopwords
+---
 
-📝 Considering unigrams and bigrams
+## 📊 Results  
 
-➡️ This step was essential because text-based data requires strong feature representation for ML models to perform well.
+| 📌 Metric       | ✅ Ham (Non-Spam) | 🚨 Spam |
+|-----------------|------------------|---------|
+| **Precision**   | 0.99             | 0.96    |
+| **Recall**      | 0.99             | 0.91    |
+| **F1-score**    | 0.99             | 0.94    |
 
-⚙️ Methodology
-🔹 1. Model Evaluation
+- 🏆 **Overall Accuracy**: **98%**  
+- 🏆 **Weighted F1-score**: **0.98**  
 
-Metric: F1-score (balances precision & recall)
+✨ The tuned model balanced:  
+- ❌ False Positives (ham → spam)  
+- ❌ False Negatives (spam missed)  
 
-Reason: Works well for imbalanced datasets like spam detection
+---
 
-✅ Result: Linear SVC outperformed others as the strongest baseline
+## 🛠️ Tech Stack  
+- 🐍 Python  
+- 📚 Scikit-learn (TF-IDF, ML models, pipelines)  
+- ⚡ Optuna (hyperparameter tuning)  
 
-🔹 2. Hyperparameter Tuning
+---
 
-Framework: Optuna (state-of-the-art optimization tool)
+## 🚀 Conclusion  
+This project demonstrates the power of **AutoML + Hyperparameter Tuning** for spam detection.  
 
-Parameters tuned:
+✅ **98% accuracy**  
+✅ **0.98 weighted F1-score**  
+✅ **Robust performance** for real-world applications  
 
-📌 N-gram range (for TF-IDF)
+---
 
-📌 Minimum document frequency (min_df)
+## 📂 Project Setup  
 
-📌 Regularization parameter (C) for SVC
+```bash
+# Clone the repository
+git clone https://github.com/neeraj-jhaa/Project_AutoML.git
 
-➡️ Optuna explored the hyperparameter space efficiently and selected the best configuration to maximize F1-score.
+# Navigate into the project directory
+cd Project_AutoML
 
-🔹 3. Final Model Training
+# Install dependencies
+pip install -r requirements.txt
 
-Trained the optimized SVC model on the training set
+# Run the training script
+python train.py
 
-Evaluated on the test set
-
-📊 Results
-📌 Metric	✅ Ham (Non-Spam)	🚨 Spam
-Precision	0.99	0.96
-Recall	0.99	0.91
-F1-score	0.99	0.94
-
-🏆 Overall Accuracy: 98%
-
-🏆 Weighted F1-score: 0.98
-
-✨ The final tuned model successfully balanced:
-
-Minimizing false positives (ham misclassified as spam)
-
-Minimizing false negatives (missed spam)
-
-🛠️ Tech Stack
-
-🐍 Python
-
-📚 Scikit-learn (TF-IDF, ML models, pipelines)
-
-⚡ Optuna (hyperparameter tuning)
-
-🚀 Conclusion
-
-This project demonstrates the power of AutoML + Hyperparameter Tuning for spam detection.
-By automating model comparison and optimization, the final Linear SVC model achieved:
-
-✅ 98% accuracy
-✅ 0.98 weighted F1-score
-✅ Robust & reliable performance for real-world spam detection
